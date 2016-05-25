@@ -24,7 +24,7 @@ get_mtime() {
 }
 
 # Check to see if the mount is NFS, if so, then poll the file
-# If not, it remove the file from the array because it's not mounted yet
+# If not, remove the file from the array because it's not mounted yet
 for i in "${!CERTFILES[@]}"; do
         if ! ( df -T "${CERTFILES[i]}" | awk '$2~"nfs"{a=1}END{exit !a}' ); then
                 unset CERTFILES[$i]
