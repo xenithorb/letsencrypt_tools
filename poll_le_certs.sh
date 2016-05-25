@@ -1,6 +1,6 @@
 #!/bin/bash
 
-POLL_INTERVAL="2" # in seconds
+POLL_INTERVAL="300" # in seconds
 
 # A list (array) of files to poll
 CERTFILES=(
