@@ -6,7 +6,7 @@ sudo cp poll_le_certs.sh /usr/local/bin/
 sudo cp poll_le_certs.service /etc/systemd/system/
 ``` 
 
-Change some stuff here, like the services named under `SERVICES=` and the certfile paths under the `CERTFILES=()` array 
+Change some stuff here, (i.e. `vi /usr/local/bin/poll_le_certs.sh`) like the services named under `SERVICES=` and the certfile paths under the `CERTFILES=()` array, or the `POLL_INTERVAL` if you want a certain resolution. Then continue with the following commands to enable it as a service.
 
 ```
 sudo systemctl daemon-reload
