@@ -24,7 +24,7 @@ get_mtime() {
 }
 
 entrapment() {
-	kill $(jobs -rp)
+	kill -- -$$
 }
 trap entrapment INT TERM
 
@@ -35,7 +35,6 @@ for i in "${!CERTFILES[@]}"; do
                 unset CERTFILES[$i]
         fi
 done
-
 
 for i in "${!CERTFILES[@]}"; do
         (
