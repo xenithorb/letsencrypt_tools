@@ -23,6 +23,11 @@ get_mtime() {
         stat -c '%Y' "$1"
 }
 
+entrapment() {
+	kill $(jobs -rp)
+}
+trap entrapment INT TERM
+
 # Check to see if the mount is NFS, if so, then poll the file
 # If not, remove the file from the array because it's not mounted yet
 for i in "${!CERTFILES[@]}"; do
@@ -34,6 +39,8 @@ done
 
 for i in "${!CERTFILES[@]}"; do
         (
+	old_ts=""
+	prerun=""
         while :; do
                 new_ts="$( get_mtime "${CERTFILES[i]}" )"
                 if [[ "$new_ts" != "$old_ts" && "$prerun" ]]; then
@@ -45,3 +52,5 @@ for i in "${!CERTFILES[@]}"; do
         done
         ) &
 done
+
+wait
