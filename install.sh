@@ -3,5 +3,5 @@ git pull
 sudo cp -f poll_le_certs.sh /usr/local/bin/
 sudo cp -f poll_le_certs.service /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable --now poll_le_certs.service
+sudo systemctl enable poll_le_certs.service
 sudo systemctl start poll_le_certs.service

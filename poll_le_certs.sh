@@ -53,3 +53,4 @@ for i in "${!CERTFILES[@]}"; do
 done
 
 wait
+exit 0
