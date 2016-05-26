@@ -1,13 +1,13 @@
 ### Intent:
 
 The primary intent with this was for backend servers that I wanted to have the same certs as the frontend proxy. 
-My idea was to simply export /etc/letsencrypt over NFSv4, and then consume those files on both the proxy and backends. (all in this case NGINX). The resultant problem is that, while the front-end proxy can action based on the renewal event, there's no immediate way to action on that event for the backend servers unless I leave SSH keys around or some other event server going. All of which requires access or some kind of key (ssh key, say). Since I'm already exporting the files over NFS, why not just poll the files every once in a while to see if the mtime changed?
+My idea was to simply export `/etc/letsencrypt` over NFSv4, and then consume those files on both the proxy and backends. (all in this case NGINX). The resultant problem is that, while the front-end proxy can action based on the renewal event, there's no immediate way to action on that event for the backend servers unless I leave SSH keys around or some other event server going. All of which requires access or some kind of key (ssh key, say). Since I'm already exporting the files over NFS, why not just poll the files every once in a while to see if the mtime changed?
 
 Assumptions:
 
 1. The files you want to poll are exported from some other server and mounted on the computer running this script as an NFS filesystem. (a part of the script checks for this)
 
-2. Certbot (letsencrypt) will renew the certs if they expire in < 30 days. Thus, polling on a long frequency (5 minutes in this case) is even excessive at that rate. You could probably increase it to several days with no ill effects. Less than 5 minute resolution is probably not warranted here.
+2. Certbot (letsencrypt) will renew the certs if they expire in **< 30 days**. Thus, polling on a long frequency (5 minutes in this case) is even excessive at that rate. You could probably increase it to several days with no ill effects. Less than 5 minute resolution is probably not warranted here.
 
 Utility:
 
