@@ -4,7 +4,7 @@ Description=Poll Let's Encrypt certs over NFS for changes
 After=network.target nfs-client.target
 
 [Service]
-Type=forking
+#Type=forking
 ExecStart=/bin/bash /usr/local/bin/poll_le_certs.sh
 
 [Install]
