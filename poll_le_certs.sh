@@ -16,6 +16,7 @@ SERVICES=(
 )
 
 restart_services() {
+	echo "$0 : Restarting: $@" 
         systemctl restart "${@}"
 }
 
