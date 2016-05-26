@@ -9,6 +9,8 @@ Assumptions:
 
 2. Certbot (letsencrypt) will renew the certs if they expire in **< 30 days**. Thus, polling on a long frequency (5 minutes in this case) is even excessive at that rate. You could probably increase it to several days with no ill effects. Less than 5 minute resolution is probably not warranted here.
 
+3. The above assumption is dependent on the fact that you have the "cert getter" actuall run `certbot renew` or some other similar command to actually renew the certs in a reasonable interval. There's no need to wait for exactly 30 days, for example.
+
 Utility:
 
 1. TODO: Write and line SERVICES with CERTFILES - mostly like with associative arrays, and deduplicate the services so we only restart them once... As of right now it's written to fork and poll multiple certs, but will restart the same set of services. It may be the case that all certs are being used for the same services, but it also may not be the case, perhaps only NGINX is using the second cert, for example. 
