@@ -4,6 +4,7 @@ Just copy this to `/etc/nginx/conf.d/` and then:
 
 ```
 mkdir -p /var/www/certbot/
+nginx -s reload
 restorecon -Rv /var/www/certbot # optional 
 certbot certonly --webroot -w /var/www/certbot -d domain [ -d more_domains ] -m email@example.com --agree-tos --text 
 ```
